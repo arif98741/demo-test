@@ -52,6 +52,8 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!---Custom js----->
     <script src="{{asset('frontend/js/custom.js')}}"></script>
+    <!---checkout js----->
+    <script src="{{asset('frontend/js/checkout.js')}}"></script>
     @if (session('status'))
       <script>
         swal("{{session('status')}}","" ,"success");
@@ -59,5 +61,6 @@
     @endif
     @yield('scripts')
   </body>
+  
 </html>
 

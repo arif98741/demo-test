@@ -18,9 +18,9 @@
                 </tr>
             </thead>
             <tbody>
-               @foreach ($category as $row)
+               @foreach ($category as $key=>$row)
                <tr>
-                <td><p>{{$row->id}}</p></td>
+                <td><p>{{++$key}}</p></td>
                 <td><p>{{$row->name}}</p></td>
                 <td><small>{{$row->description}}</small></td>
                 <td><img  class="cate-image" src="{{ asset('assets/uploads/category/'.$row->image) }}" alt="category"></td>

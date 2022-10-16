@@ -106,14 +106,20 @@
                      <div class="alert alert-danger">{{ $message }}</div>
                  @enderror
                    </div>
+                      <!----Image----->
                    <div class="col-md-12 mb-3">
                     <label for="formFileSm" class="form-label">Image</label>
-                    <input class="form-control form-control-sm @error('image') is-invalid @enderror" 
+                    <input class="form-control form-control-sm @error('image') is-invalid @enderror"
+                    onchange="loadFile(event)"
                     name="image"
                     id="formFileSm" type="file" required> 
                     @error('image')
                     <div class="alert alert-danger">{{ $message }}</div>
                    @enderror
+                   </div>
+                      <!----Meta keywords----->
+                   <div class="col-md-12 mb-3 text-center">
+                    <img id="preview" width="200px">
                    </div>
                    <div class="col-md-12">
                     <button type="submit" class="btn btn-primary">Submit</button>

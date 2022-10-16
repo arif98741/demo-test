@@ -10,6 +10,7 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\UserController;
 use App\Http\Controllers\Frontend\WishlistController;
+use App\Http\Controllers\SslCommerzPaymentController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -90,5 +91,22 @@ Route::middleware(['auth'])->group(function(){
     Route::get('view-order/{id}',[UserController::class,'view']);
     //wishlist
     Route::get('/wishlist',[WishlistController::class,'index']);
+    //proceed to pay 
+    Route::post('/proceed-to-pay',[CheckoutController::class,'proceedToPay']);
     
 });
+
+
+// SSLCOMMERZ Start
+
+
+
+Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
+Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
+
+Route::post('/success', [SslCommerzPaymentController::class, 'success']);
+Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
+Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
+
+Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
+//SSLCOMMERZ END

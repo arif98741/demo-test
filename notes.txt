@@ -1,0 +1,17 @@
+username : rakibulislam
+password :RT657787
+
+if route does not work run the command below: 
+php artisan optimize:clear
+
+paypal sandbox accounts
+personal
+
+email: sb-pqjh121619372@personal.example.com
+password: s&{&i7VY 
+phone: 4083181526
+
+business
+email: rovers@rv.com
+password: 1q+SbQc3
+phone: 4087965075 

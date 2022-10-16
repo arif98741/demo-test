@@ -19,9 +19,9 @@
                 </tr>
             </thead>
             <tbody>
-               @foreach ($products as $row)
+               @foreach ($products as $key=>$row)
                <tr>
-                <td>{{$row->id}}</td>
+                <td>{{++$key}}</td>
                 <td>{{$row->category->name}}</td>
                 <td>{!!  substr($row->name,0,40) !!}...</td>
                 <td>{{$row->selling_price}}</td>

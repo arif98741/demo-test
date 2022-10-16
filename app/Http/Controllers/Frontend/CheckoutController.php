@@ -22,6 +22,9 @@ class CheckoutController extends Controller
         //     }
         // }
         $cartItems = Cart::where('user_id',Auth::id())->get();
+        if($cartItems->isEmpty()){
+            return redirect('/category')->with('status','Please add some products to your cart');
+        }
         return view('frontend.checkout',compact('cartItems'));
     }
     public function placeorder(Request $request){
@@ -37,6 +40,7 @@ class CheckoutController extends Controller
             'state' => 'required',
             'country' => 'required',
             'pincode' => 'required',
+            'payment_mode' => 'required',
         ]);
         $order = new Order();
         $order->user_id = Auth::id();
@@ -50,6 +54,8 @@ class CheckoutController extends Controller
         $order->state = $request->input('state');
         $order->country = $request->input('country');
         $order->pincode = $request->input('pincode');
+        $order->transaction_id =  $request->input('transaction_id');
+        $order->payment_mode = $request->input('payment_mode');
         //calculate the total price 
         $total = 0;
         $cart_items = Cart::where('user_id',Auth::id())->get();
@@ -87,7 +93,43 @@ class CheckoutController extends Controller
         }
         // clear cart
         Cart::destroy($cartItems);
-        return redirect('/')->with('status','Order Placed Successfully');
-
+        if($request->input('payment_mode') == 'COD'){
+            return redirect('/')->with('status','Order Placed Successfully');
+        }else{
+            return response()->json(['status'=>'success']);
+        }
+    }
+    //proceed to pay 
+    public function proceedToPay(Request $request){
+        $user_id = Auth::id();
+        $cartItems = Cart::where('user_id', $user_id)->get();
+        $total_price = 0; 
+        foreach ($cartItems as $cart) {
+            $total_price += $cart->products->selling_price * $cart->prod_qty;
+        }
+        $firstname = $request->input('firstname'); 
+        $lastname = $request->input('lastname'); 
+        $email = $request->input('email'); 
+        $phone = $request->input('phone'); 
+        $address1 = $request->input('address1'); 
+        $address2 = $request->input('address2'); 
+        $city = $request->input('city'); 
+        $state = $request->input('state'); 
+        $country = $request->input('country'); 
+        $pincode = $request->input('pincode'); 
+        return response()->json([
+            'user_id' =>  $user_id,
+            'firstname'=> $firstname,
+            'lastname'=> $lastname,
+            'email'=> $email,
+            'phone'=> $phone,
+            'address1'=> $address1,
+            'address2'=> $address2,
+            'city'=> $city,
+            'state'=> $state,
+            'country'=> $country,
+            'pincode'=> $pincode,
+            'total_price' => $total_price,
+        ]);
     }
 }

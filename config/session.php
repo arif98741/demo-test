@@ -17,7 +17,7 @@ return [
     |            "memcached", "redis", "dynamodb", "array"
     |
     */
-
+   
     'driver' => env('SESSION_DRIVER', 'file'),
 
     /*
@@ -196,6 +196,7 @@ return [
     |
     */
 
-    'same_site' => 'lax',
+    // 'same_site' => 'lax',
+    'same_site' => null,
 
 ];

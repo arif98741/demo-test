@@ -59,6 +59,11 @@
                         </tbody>
                     </table>
                     <p>Grand total <span class="float-end"> <b>BDT</b>{{$orders->total_price}}</span></p>
+                    @if ($orders->payment_mode == 'COD')
+                    <p class="fw-bold">{{$orders->payment_mode}}</p>
+                        @else
+                        <p>Paid By <b>{{$orders->payment_mode}}</b></p>
+                    @endif
                 </div>
             </div>
            </div>

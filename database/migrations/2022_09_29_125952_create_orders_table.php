@@ -26,10 +26,11 @@ return new class extends Migration
             $table->string('state');
             $table->string('country');
             $table->string('pincode');
-            $table->tinyInteger('status')->default('0');
+            $table->string('status')->default('Pending');
             $table->string('message')->nullable();
             $table->string('tracking_no');
             $table->string('total_price')->nullable();
+            $table->string('transaction_id')->nullable();
             $table->timestamps();
         });
     }

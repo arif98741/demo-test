@@ -89,17 +89,25 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                  </div>
+                
                  <!----Image----->
                  <div class="col-md-12 mb-3">
                     <label for="formFileSm" class="form-label">Image</label>
-                    <input class="form-control form-control-sm @error('image') is-invalid @enderror" 
+                    <input 
+                    class="form-control form-control-sm @error('image') is-invalid @enderror" 
                     name="image"
-                    id="formFileSm" type="file"
+                    id="formFileSm" 
+                    type="file"
+                    onchange="loadFile(event)"
                     required>
                     @error('image')
                     <div class="alert alert-danger">{{ $message }}</div>
-                @enderror 
+                    @enderror 
                    </div>
+                    <!----Image preview----->
+                    <div class="col-md-12 mb-3 text-center">
+                        <img  id="preview" width="200px" >
+                     </div>
                       <!----Tax----->
                  <div class="col-md-6">
                     <input type="number" name="tax" 
@@ -177,6 +185,7 @@
                    </div>
             </div>
         </form>
+      
     </div>
 </div>
 @endsection
