@@ -117,7 +117,7 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                    @enderror
                    </div>
-                      <!----Meta keywords----->
+                      <!----preview image----->
                    <div class="col-md-12 mb-3 text-center">
                     <img id="preview" width="200px">
                    </div>

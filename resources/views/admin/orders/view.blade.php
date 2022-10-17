@@ -1,4 +1,4 @@
-@extends('layouts.front')
+@extends('layouts.admin')
 @section('title','My order')
 @section('content')
 <div class="container my-5">
@@ -35,7 +35,11 @@
                    
             </div>
                 <div class="col-md-6">
-                    <h4 class="fw-bold">Order Details</h4>
+                    <div class="div">
+                        <h4 class="fw-bold ">Order Details</h4>
+                        <a class="btn btn-success btn-sm float-end" href=""> Download Invoice</a>
+                        <a class="btn btn-secondary btn-sm  float-end me-1" target="_blank" href="/view-invoice/{{$orders->id}}"> View Invoice</a>
+                    </div>
                     <hr>
                     <table class="table table-bordered">
                         <thead>

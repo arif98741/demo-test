@@ -66,6 +66,14 @@
             <span class="nav-link-text ">Users</span>
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link text-white {{Request::is('slider')?'bg-gradient-primary':''}} " href="{{url('slider')}}">
+            <div class="text-white text-center  d-flex align-items-center justify-content-center">
+              <i class="fa-solid fa-sliders"></i>
+            </div>
+            <span class="nav-link-text ms-2">Slider</span>
+          </a>
+        </li>
        
         {{-- <li class="nav-item">
           <a class="nav-link text-white " href="../pages/billing.html">

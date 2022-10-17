@@ -26,4 +26,8 @@ class OrderController extends Controller
         $orders = Order::where('status','1')->first();
         return view('admin.orders.history',compact('orders'));
     }
+    public function viewInvoice($id){
+        $orders = Order::where('id',$id)->first();
+        return view('admin.orders.invoice',compact('orders'));
+    }
 }

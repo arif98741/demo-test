@@ -37,6 +37,13 @@
                 <div class="col-md-6">
                     <h4 class="fw-bold">Order Details</h4>
                     <hr>
+                    @if ($orders->payment_mode == 'COD')
+                    <p class="fw-bold">{{$orders->payment_mode}}</p>
+                        @else
+                        <small>Paid By <b>{{$orders->payment_mode}}</b></small>
+                        <br>
+                        <small>Transaction Id : <b>{{$orders->transaction_id}}</b></small>
+                    @endif
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -58,12 +65,11 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <p>Grand total <span class="float-end"> <b>BDT</b>{{$orders->total_price}}</span></p>
-                    @if ($orders->payment_mode == 'COD')
-                    <p class="fw-bold">{{$orders->payment_mode}}</p>
-                        @else
-                        <p>Paid By <b>{{$orders->payment_mode}}</b></p>
-                    @endif
+                   
+                        <p>Grand total <span class="float-end"> <b>BDT</b>{{$orders->total_price}}</span></p>
+                 
+                    
+                    
                 </div>
             </div>
            </div>

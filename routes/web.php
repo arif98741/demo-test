@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\adminFrontendController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\OrderController;
 use App\Http\Controllers\admin\ProductController;
+use App\Http\Controllers\admin\SliderController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\UserController;
@@ -60,10 +61,18 @@ Route::middleware(['auth','isAdmin'])->group(function(){
     Route::get('/admin/view-order/{id}',[OrderController::class,'view']);
     Route::put('/update-order/{id}',[OrderController::class,'updateorder']);
     Route::get('order-history',[OrderController::class,'orderhistory']);
+    Route::get('/view-invoice/{id}',[OrderController::class,'viewInvoice']);
 
     //users
     Route::get('users',[DashboardController::class,'users']);
     Route::get('view-user/{id}',[DashboardController::class,'viewuser']);
+    //slider
+    Route::get('/slider',[SliderController::class,'index']);
+    Route::get('/add-slider',[SliderController::class,'addSlider']);
+    Route::post('/store-slider',[SliderController::class,'store']);
+    Route::get('/delete-slider/{id}',[SliderController::class,'delete']);
+    Route::get('/edit-slider/{id}',[SliderController::class,'edit']);
+    Route::post('/update-slider/{id}',[SliderController::class,'update']);
 
 });
 //frontend  

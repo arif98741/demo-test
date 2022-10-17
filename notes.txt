@@ -15,3 +15,7 @@ business
 email: rovers@rv.com
 password: 1q+SbQc3
 phone: 4087965075 
+
+slider details
+w:1100
+h:400

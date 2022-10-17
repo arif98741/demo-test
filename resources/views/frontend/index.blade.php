@@ -3,7 +3,7 @@
     Welcome to Rovers
 @endsection
 @section('content')
-@include('layouts.inc.slider')
+@include('layouts.inc.slider',['slider'=>$slider])
     <div class="py-5">
         <div class="container">
             <div class="row">

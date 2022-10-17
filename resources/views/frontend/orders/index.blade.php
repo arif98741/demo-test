@@ -10,30 +10,35 @@
           <div class="card">
             
                <div class="card-body">
-                <table class="table table-borderd">
-                    <thead>
-                        <tr>
-                            <th>Order Date</th>
-                            <th>Tracking Number</th>
-                            <th>Total Price</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($orders as $order)
+                @if ($orders->isEmpty())
+                <h4 class="fw-bold text-center my-4">No Orders </h4>
+                    @else
+                    <table class="table table-borderd">
+                        <thead>
                             <tr>
-                                <td>{{date('d-m-Y',strtotime($order->created_at))}}</td>
-                                <td>{{$order->tracking_no}}</td>
-                                <td><b>BDT</b> {{$order->total_price}}</td>
-                                <td>{{$order->status == '0'?'pending':'completed'}}</td>
-                                <td>
-                                    <a href="{{url('view-order/'.$order->id)}}" class="btn btn-success">View</a>
-                                </td>
+                                <th>Order Date</th>
+                                <th>Tracking Number</th>
+                                <th>Total Price</th>
+                                <th>Status</th>
+                                <th>Action</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach ($orders as $order)
+                                <tr>
+                                    <td>{{date('d-m-Y',strtotime($order->created_at))}}</td>
+                                    <td>{{$order->tracking_no}}</td>
+                                    <td><b>BDT</b> {{$order->total_price}}</td>
+                                    <td>{{$order->status == '0'?'pending':'completed'}}</td>
+                                    <td>
+                                        <a href="{{url('view-order/'.$order->id)}}" class="btn btn-success">View</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                @endif
+                
                </div>
           </div>
         </div>
