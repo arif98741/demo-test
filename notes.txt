@@ -19,3 +19,15 @@ phone: 4087965075
 slider details
 w:1100
 h:400
+
+
+
+
+
+
+
+1 cart div reload
+2 wishlist div reload on delete item 
+3 login and register page 
+4 wait after place order 
+5 admin view orders - change layouts to admin

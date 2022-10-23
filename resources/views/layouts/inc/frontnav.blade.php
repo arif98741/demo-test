@@ -1,10 +1,20 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <a class="navbar-brand fw-bold" href="{{url('/')}}"><span class="logo-style">Rovers</span></a>
+      
+      <form method="POST" action="{{url('/searchproduct')}}" class="d-flex" role="search">
+        @csrf
+        <input class="form-control me-2" name="product_name" type="search" id="searchproduct"  
+        placeholder="Search Product" aria-label="Search" required>
+        <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </form>
+
+
+
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-     
+
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
@@ -14,7 +24,18 @@
             <a class="nav-link {{Request::is('category')?'custom-active':''}}" href="{{url('category')}}">Category</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{Request::is('wishlist')?'custom-active':''}}" href="{{url('wishlist')}}">Wishlist <span class="badge badge-pill bg-success wishlist-count">0</span></a>
+            <a class="nav-link {{Request::is('wishlist')?'custom-active':''}}" href="{{url('wishlist')}}">
+              <div class="text-success position-relative">
+                <i class="fa-solid fa-bag-shopping fa-2x text-primary">
+                </i>
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger wishlist-count">0
+                </span>
+              </div>
+               
+            
+            </a>
+
+            
             
           </li>
           <a class="nav-link {{Request::is('cart')?'custom-active':''}}" href="{{url('cart')}}">

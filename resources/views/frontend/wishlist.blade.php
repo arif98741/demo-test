@@ -8,8 +8,8 @@
         </h6>
     </div>
 </div>
-<div class="container my-5">
-    <div class="card shadow ">
+<div class="container my-5 mywishlist">
+    <div class="card shadow">
         <div class="card-body">
             @if ($wishlists->count() >0)
             <div class="card-body">
@@ -80,7 +80,7 @@
               
         <h4 class="text-center my-5 fw-bold">There are no products in your wishlist</h4>
     
-</div>
+         </div>
            @endif
             
     </div>

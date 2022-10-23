@@ -28,6 +28,10 @@
 <script src="https://kit.fontawesome.com/49f07afdff.js" crossorigin="anonymous"></script>
 <!---Toastify----->
 <link href="{{asset('frontend/css/toastify.css')}}" rel="stylesheet" />
+<!-- Toastify css -->
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.6.1/toastify.css" rel="stylesheet" />
+<!-- Jquery ui -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 </head>
 
 <body>
@@ -35,7 +39,17 @@
       <div class="container-fluid">
        @yield('content')
       </div>
-     
+      <!--   whats app   -->
+      <div class="whatsapp-chat">
+        <a href="https://wa.me/+8801775088249?text=I'm%20interested%20in%20the%20buy%20something" target="_blank">
+          <img src="{{asset('assets/images/whatsapp.png')}}" 
+        height="60px"
+        width="60px" alt="whatsapp-logo">
+        </a>
+      </div>
+    
+      @include('layouts.inc.frontfooter')
+    
     <!--   Core JS Files   -->
     <script 
     src="{{asset('frontend/js/bootstrap.bundle.min.js')}}"
@@ -46,6 +60,8 @@
     
     <!---Jquery----->
     <script src="{{asset('frontend/js/jquery-3.6.0.min.js')}}"></script>
+    <!---Jquery ui----->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <!--- Owl carousel ----->
     <script src="{{asset('frontend/js/owl.carousel.min.js')}}"></script>
     <!---Sweet alert---->
@@ -54,11 +70,50 @@
     <script src="{{asset('frontend/js/custom.js')}}"></script>
     <!---checkout js----->
     <script src="{{asset('frontend/js/checkout.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.6.1/toastify.js"></script>
+   
+    <!--Start of Tawk.to Script-->
+<script type="text/javascript">
+  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+  (function(){
+  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+  s1.async=true;
+  s1.src='https://embed.tawk.to/635549f5daff0e1306d38598/1gg2ihqt6';
+  s1.charset='UTF-8';
+  s1.setAttribute('crossorigin','*');
+  s0.parentNode.insertBefore(s1,s0);
+  })();
+  </script>
+  <!--End of Tawk.to Script-->
     @if (session('status'))
       <script>
-        swal("{{session('status')}}","" ,"success");
-      </script>        
+        Toastify({text:'{{session('status')}}',duration:2000,
+      style:{ background:"linear-gradient(to rigth,#00b09b,96c93d)" } 
+      }).showToast();
+      </script>
     @endif
+
+    <!---jqury ui----->
+    <script>
+      $( function() {
+        var availableTags = [];
+        $.ajax({
+          type: "GET",
+          url: "/product-list",
+         
+          success: function (response) {
+            startAutoComplate(response);
+          }
+        });
+        function startAutoComplate(availableTags){
+         $( "#searchproduct" ).autocomplete({
+          source: availableTags
+        });
+        }
+       
+      } );
+      </script>
+    <!---extended script----->
     @yield('scripts')
   </body>
   

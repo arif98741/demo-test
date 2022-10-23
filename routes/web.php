@@ -9,9 +9,12 @@ use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\SliderController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
+use App\Http\Controllers\Frontend\RatingController;
+use App\Http\Controllers\Frontend\ReviewController;
 use App\Http\Controllers\Frontend\UserController;
 use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\SslCommerzPaymentController;
+use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -62,6 +65,8 @@ Route::middleware(['auth','isAdmin'])->group(function(){
     Route::put('/update-order/{id}',[OrderController::class,'updateorder']);
     Route::get('order-history',[OrderController::class,'orderhistory']);
     Route::get('/view-invoice/{id}',[OrderController::class,'viewInvoice']);
+    
+    Route::get('/admin/view-order/download-invoice/{id}',[OrderController::class,'downloadInvoice']);
 
     //users
     Route::get('users',[DashboardController::class,'users']);
@@ -80,6 +85,8 @@ Route::get('/',[FrontendController::class,'index']);
 Route::get('/category',[FrontendController::class,'category']);
 Route::get('/view-category/{slug}',[FrontendController::class,'viewCategory']);
 Route::get('/category/{cate_slug}/{prod_slug}',[frontendController::class,'productView']);
+Route::get('/product-list',[FrontendController::class,'productlistAjx']);
+Route::post('/searchproduct',[FrontendController::class,'searchProduct']);
 //cart
 Route::post('/add-to-cart',[CartController::class,'addProduct']);
 Route::post('/delete-cart-item',[CartController::class,'deleteProduct']);
@@ -102,7 +109,13 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/wishlist',[WishlistController::class,'index']);
     //proceed to pay 
     Route::post('/proceed-to-pay',[CheckoutController::class,'proceedToPay']);
-    
+    //rating
+    Route::post('/add-rating',[RatingController::class,'add']);
+    //review
+    Route::get('/add-review/{product_slug}/userreview',[ReviewController::class,'add']);
+    Route::post('/add-review',[ReviewController::class,'create']);
+    Route::get('edit-review/{product_slug}/userreview',[ReviewController::class,'edit']);;
+    Route::put('/update',[ReviewController::class,'update']);
 });
 
 

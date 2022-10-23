@@ -9,7 +9,7 @@
     </div>
 </div>
 <div class="container my-5">
-    <div class="card shadow ">
+    <div class="card shadow cartitems">
         <div class="card-body">
             @if ($cartItems->isEmpty())
             <h5 class="fw-bold text-center my-4">Cart is empty</h5>

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\admin;
-
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Illuminate\Http\Request;
@@ -27,7 +27,14 @@ class OrderController extends Controller
         return view('admin.orders.history',compact('orders'));
     }
     public function viewInvoice($id){
-        $orders = Order::where('id',$id)->first();
+        $orders = Order::findOrFail($id);
         return view('admin.orders.invoice',compact('orders'));
+    }
+    public function downloadInvoice($id){
+        $order = Order::findOrFail($id);
+        $data = ['orders'=>$order];
+        $pdf = Pdf::loadView('admin.orders.invoice', $data);
+        return $pdf->download('invoice.pdf');
+       
     }
 }

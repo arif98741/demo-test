@@ -37,7 +37,7 @@
                 <div class="col-md-6">
                     <div class="div">
                         <h4 class="fw-bold ">Order Details</h4>
-                        <a class="btn btn-success btn-sm float-end" href=""> Download Invoice</a>
+                        <a class="btn btn-success btn-sm float-end" href="download-invoice/{{$orders->id}}"> Download Invoice</a>
                         <a class="btn btn-secondary btn-sm  float-end me-1" target="_blank" href="/view-invoice/{{$orders->id}}"> View Invoice</a>
                     </div>
                     <hr>
