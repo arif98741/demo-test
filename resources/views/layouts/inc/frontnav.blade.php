@@ -18,7 +18,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link {{Request::is('/')?'custom-active':''}}" aria-current="page" href="">Home</a>
+            <a class="nav-link  {{Request::is('/')?'custom-active':''}}" aria-current="page" href="/">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link {{Request::is('category')?'custom-active':''}}" href="{{url('category')}}">Category</a>
@@ -38,15 +38,19 @@
             
             
           </li>
-          <a class="nav-link {{Request::is('cart')?'custom-active':''}}" href="{{url('cart')}}">
+          <li class="nav-item">
+            <a class="nav-link {{Request::is('cart')?'custom-active':''}}" href="{{url('cart')}}">
               
-            <div class="text-success position-relative">
-              <i class="mt-3 fa-solid fa-cart-shopping fa-lg"></i>
-              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-count">0
-              </span>
-            </div>
-            </a>
-          @if (Route::has('login'))
+              <div class="text-success position-relative">
+                <i class="mt-3 fa-solid fa-cart-shopping fa-lg"></i>
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-count">0
+                </span>
+              </div>
+              </a>
+          </li>
+          
+          
+            @if (Route::has('login'))
             @auth
                 
            

@@ -84,7 +84,7 @@ Route::middleware(['auth','isAdmin'])->group(function(){
 Route::get('/',[FrontendController::class,'index']);
 Route::get('/category',[FrontendController::class,'category']);
 Route::get('/view-category/{slug}',[FrontendController::class,'viewCategory']);
-Route::get('/category/{cate_slug}/{prod_slug}',[frontendController::class,'productView']);
+Route::get('/category/{cate_slug}/{prod_slug}',[FrontendController::class,'productView']);
 Route::get('/product-list',[FrontendController::class,'productlistAjx']);
 Route::post('/searchproduct',[FrontendController::class,'searchProduct']);
 //cart

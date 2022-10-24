@@ -23,7 +23,7 @@ class OrderController extends Controller
         return redirect('orders')->with('status','Order Updated Successfully');
     }
     public function orderhistory(){
-        $orders = Order::where('status','1')->first();
+        $orders = Order::where('status','1')->get();
         return view('admin.orders.history',compact('orders'));
     }
     public function viewInvoice($id){

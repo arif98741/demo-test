@@ -12,14 +12,24 @@
                     @foreach ($featured_products as $product)
                     <div>
                         <a href="{{url('/category/'.$product->category->slug.'/'.$product->slug)}}" class="anchor-style">
-                            <div class="card">
+                            
+                            <div class="card card-style">
                                 <img width="100%" src="{{asset('assets/uploads/products/'.$product->image)}}" alt="product image">
                                 <div class="card-body">
-                                    <h5>{{ $product->name }}</h5>
-                                    <span class="float-start"> BDT  {{ $product->selling_price }}</span>
-                                    <span class="float-end"><s> 
-                                        BDT
-                                        {{ $product->original_price }}</s></span>
+                                    <p class="h5">
+                                        {!!  substr($product->name,0,40) !!}...
+                                       </p>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <span> BDT  {{ $product->selling_price }}</span>
+                                          
+                                        </div>
+                                        <div class="col-md-6">
+                                            <span class=""><s> 
+                                                BDT
+                                                {{ $product->original_price }}</s></span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </a>
@@ -42,13 +52,13 @@
                     @foreach ($trending_category as $tcategory)
                     <div >
                         <a href="{{url('view-category/'.$tcategory->slug)}}" class="anchor-style ">
-                            <div class="card">
+                            <div class="card card-style">
                                 <img width="100%" src="{{asset('assets/uploads/category/'.$tcategory->image)}}" alt="product image">
                                 <div class="card-body">
-                                    <h5>{{ $tcategory->name }}</h5>
-                                    <p>{{
-                                        $tcategory->description
-                                        }}
+                                    <p class="h5">{{ $tcategory->name }}</p>
+                                    <p>
+                                        {!!  substr($tcategory->description,0,40) !!}...
+                                        
                                     </p>
                                 </div>
                             </div>
@@ -72,13 +82,13 @@
     nav:false,
     responsive:{
         0:{
-            items:1
+            items:2
         },
         600:{
-            items:3
+            items:4
         },
         1000:{
-            items:3
+            items:4
         }
     }
 })

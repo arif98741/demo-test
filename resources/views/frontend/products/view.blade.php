@@ -117,7 +117,7 @@
                         </label>
                     @endif
                     <div class="row mt-2">
-                        <div class="col-md-2 quantity">
+                        <div class="col-md-2 col-5 quantity">
                             <input type="hidden" value="{{$product->id}}" name="" class="prod_id">
                             <label for="Quantity">Quantity</label>
                             <div class="input-group text-center mb-3">

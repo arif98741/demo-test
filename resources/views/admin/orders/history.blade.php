@@ -1,4 +1,4 @@
-@extends('layouts.front')
+@extends('layouts.admin')
 @section('title','Order history')
 @section('content')
 <div class="container my-5">
@@ -9,34 +9,37 @@
             
            </div>
            <div class="card-body">
-            @if (empty($orders->fname))
+            @if ($orders->isEmpty())
             <h4 class="text-center my-5">No orders History</h4>
             @else
-            <div class="row">
+            @foreach ($orders as $key=>$item)
+            <hr>
+            <p class="text-center">Order No:{{++$key}}</p>
+            <div class="row mt-5">
                 <div class="col-md-6">
                     <h4 class="fw-bold">Shipping Details</h4>
                     <hr>
                    <label for="">First Name</label>
-                   <div class="border p-2">{{$orders->fname}}</div>
+                   <div class="border p-2">{{$item->fname}}</div>
                    <label for="">Last Name</label>
-                   <div class="border p-2">{{$orders->lname}}</div>
+                   <div class="border p-2">{{$item->lname}}</div>
                    <label for="">Email</label>
-                   <div class="border p-2">{{$orders->email}}</div>
+                   <div class="border p-2">{{$item->email}}</div>
                    <label for="">Contact No.</label>
-                   <div class="border p-2">{{$orders->phone}}</div>
+                   <div class="border p-2">{{$item->phone}}</div>
                    <label for="">Shiping Address</label>
                    <div class="border p-2">
                     
-                    {{$orders->address1}}
-                    {{$orders->address2}}
-                    {{$orders->city}}
-                    {{$orders->state}}
-                    {{$orders->country}}
+                    {{$item->address1}}
+                    {{$item->address2}}
+                    {{$item->city}}
+                    {{$item->state}}
+                    {{$item->country}}
                     </div>
                     <label for="">Zip Code</label>
-                    <div class="border p-2">{{$orders->pincode}}</div>
+                    <div class="border p-2">{{$item->pincode}}</div>
                    
-            </div>
+               </div>
                 <div class="col-md-6">
                     <h4 class="fw-bold">Order Details</h4>
                     <hr>
@@ -50,9 +53,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($orders->orderItems as $order)
+                            @foreach ($item->orderItems as $order)
                                 <tr>
-                                    <td>{{$order->products->name}}</td>
+                                    <td>
+                                        {!!  substr($order->products->name,0,20) !!}...
+                                        </td>
                                     <td>{{$order->qty}}</td>
                                     <td>{{$order->price}}</td>
                                     <td><img src="{{asset('assets/uploads/products/'.$order->products->image)}}" height="50px" width="70px" alt="product image"></td>
@@ -61,18 +66,19 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <p>Grand total <span class="float-end"> <b>BDT</b>{{$orders->total_price}}</span></p>
-                    <form action="{{url('update-order/'.$orders->id)}}" method="post" class="my-4">
+                    <p>Grand total <span class="float-end"> <b>BDT</b>{{$item->total_price}}</span></p>
+                    <form action="{{url('update-order/'.$item->id)}}" method="post" class="my-4">
                         @csrf
                         @method('PUT')
                         <select class="form-select" name="order_status">
-                            <option {{$orders->status == '0'? 'selected':''}} value="0">Pending</option>
-                            <option {{$orders->status == '1'? 'selected':''}} value="1">Complate</option>
+                            <option {{$item->status == '0'? 'selected':''}} value="0">Pending</option>
+                            <option {{$item->status == '1'? 'selected':''}} value="1">Complate</option>
                          
                           </select>
                           <button class="btn btn-primary float-end my-3" type="submit">Update</button>
                     </form>
-                </div>    
+            </div> 
+            @endforeach   
             @endif
             </div>
            </div>
