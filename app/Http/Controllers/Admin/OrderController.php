@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
@@ -35,6 +35,6 @@ class OrderController extends Controller
         $data = ['orders'=>$order];
         $pdf = Pdf::loadView('admin.orders.invoice', $data);
         return $pdf->download('invoice.pdf');
-       
+
     }
 }

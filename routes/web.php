@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Frontend\frontendController;
-use App\Http\Controllers\Admin\adminFrontendController;
+use App\Http\Controllers\Admin\AdminFrontendController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\OrderController;
 use App\Http\Controllers\admin\ProductController;
@@ -38,7 +38,7 @@ Auth::routes();
 Route::middleware(['auth','isAdmin'])->group(function(){
     //home
 
-    Route::get('/dashboard',[adminFrontendController::class,'index']);
+    Route::get('/dashboard',[AdminFrontendController::class,'index']);
 
     //category
 
@@ -48,7 +48,7 @@ Route::middleware(['auth','isAdmin'])->group(function(){
     Route::get('/edit-category/{id}',[CategoryController::class,'edit']);
     Route::put('/update-category/{id}',[CategoryController::class,'update']);
     Route::get('/delete-category/{id}',[CategoryController::class,'destroy']);
-    
+
     //products
 
     Route::get('/products',[ProductController::class,'index']);
@@ -65,7 +65,7 @@ Route::middleware(['auth','isAdmin'])->group(function(){
     Route::put('/update-order/{id}',[OrderController::class,'updateorder']);
     Route::get('order-history',[OrderController::class,'orderhistory']);
     Route::get('/view-invoice/{id}',[OrderController::class,'viewInvoice']);
-    
+
     Route::get('/admin/view-order/download-invoice/{id}',[OrderController::class,'downloadInvoice']);
 
     //users
@@ -80,7 +80,7 @@ Route::middleware(['auth','isAdmin'])->group(function(){
     Route::post('/update-slider/{id}',[SliderController::class,'update']);
 
 });
-//frontend  
+//frontend
 Route::get('/',[FrontendController::class,'index']);
 Route::get('/category',[FrontendController::class,'category']);
 Route::get('/view-category/{slug}',[FrontendController::class,'viewCategory']);
@@ -95,7 +95,7 @@ Route::post('/update-quantity',[CartController::class,'updateQuantity']);
 Route::post('/add-to-wishist',[WishlistController::class,'add']);
 //delete-wishlist
 Route::post('/delete-wishlist-item',[WishlistController::class,'deleteItem']);
-//load cart data 
+//load cart data
 Route::get('/load-cart-data',[CartController::class,'cartcount']);
 //load-wishlist-data
 Route::get('/load-wishlist-data',[WishlistController::class,'wishlistcount']);
@@ -107,7 +107,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('view-order/{id}',[UserController::class,'view']);
     //wishlist
     Route::get('/wishlist',[WishlistController::class,'index']);
-    //proceed to pay 
+    //proceed to pay
     Route::post('/proceed-to-pay',[CheckoutController::class,'proceedToPay']);
     //rating
     Route::post('/add-rating',[RatingController::class,'add']);

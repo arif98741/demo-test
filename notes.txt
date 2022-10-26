@@ -31,3 +31,8 @@ h:400
 3 login and register page 
 4 wait after place order 
 5 admin view orders - change layouts to admin
+
+aws
+security group 
+name : _RSG_
+description : _ROVESR_SECURITY_GROUP

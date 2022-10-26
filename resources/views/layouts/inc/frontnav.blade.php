@@ -6,7 +6,7 @@
         @csrf
         <input class="form-control me-2" name="product_name" type="search" id="searchproduct"  
         placeholder="Search Product" aria-label="Search" required>
-        <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <button class="btn btn-outline-success btn-sm" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
       </form>
 
 
